@@ -36,5 +36,5 @@ void USaveLoadSystemSettings::PostEditChangeProperty(FPropertyChangedEvent& Prop
 void USaveLoadSystemSettings::SaveSettings()
 {
 	SaveConfig(CPF_Config, *GetDefaultConfigFilename(), new FConfigCacheIni(EConfigCacheType::DiskBacked), true);
-	TryUpdateDefaultConfigFile();
+	UpdateDefaultConfigFile();
 }
