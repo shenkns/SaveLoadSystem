@@ -7,6 +7,7 @@ public class SaveLoadSystem : ModuleRules
 	public SaveLoadSystem(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+		CppStandard = CppStandardVersion.Cpp17;
 
 		PrivateIncludePaths.AddRange(
 			new string[] {

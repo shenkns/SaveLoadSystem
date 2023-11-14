@@ -1,7 +1,9 @@
-// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2022.
+// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2023.
 
 #include "Module/SaveLoadSystemModule.h"
 
+#include "Log.h"
+#include "Log/Details/LocalLogCategory.h"
 #include "Module/SaveLoadSystemSettings.h"
 
 #if UE_EDITOR
@@ -10,7 +12,8 @@
 
 IMPLEMENT_MODULE(FSaveLoadSystemModule, SaveLoadSystem)
 
-SAVELOADSYSTEM_API DEFINE_LOG_CATEGORY(LogSaveLoadSystem)
+SAVELOADSYSTEM_API DEFINE_LOG_CATEGORY(LogSaveLoadSystem);
+DEFINE_LOG_CATEGORY_LOCAL(LogSaveLoadSystem);
 
 void FSaveLoadSystemModule::StartupModule()
 {
@@ -40,7 +43,7 @@ void FSaveLoadSystemModule::RegisterSystemSettings() const
 			GetMutableDefault<USaveLoadSystemSettings>()
 		);
 
-		LOG_STATIC(LogSaveLoadSystemSettings, "Save-Load System Settings Registered")
+		LOG(Display, "Save-Load System Settings Registered");
 	}
 }
 
@@ -50,7 +53,7 @@ void FSaveLoadSystemModule::UnregisterSystemSettings() const
 	{
 		SettingsModule->UnregisterSettings("Project", "Plugins", "Save-Load System");
 
-		LOG_STATIC(LogSaveLoadSystemSettings, "Save-Load System Settings Unregistered")
+		LOG(Display, "Save-Load System Settings Unregistered");
 	}
 }
 #endif

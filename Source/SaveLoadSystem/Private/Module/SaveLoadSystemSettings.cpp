@@ -1,12 +1,14 @@
-﻿// Copyright shenkns Managers System Developed With Unreal Engine. All Rights Reserved 2022.
+﻿// Copyright shenkns Managers System Developed With Unreal Engine. All Rights Reserved 2023.
 
 #include "Module/SaveLoadSystemSettings.h"
 
+#include "Log.h"
 #include "Stats/Stat.h"
 #include "Libs/SerializationSystemLibrary.h"
-#include "LogSystem.h"
+#include "Log/Details/LocalLogCategory.h"
 
 SAVELOADSYSTEM_API DEFINE_LOG_CATEGORY(LogSaveLoadSystemSettings);
+DEFINE_LOG_CATEGORY_LOCAL(LogSaveLoadSystemSettings);
 
 void USaveLoadSystemSettings::PostInitProperties()
 {
@@ -14,7 +16,7 @@ void USaveLoadSystemSettings::PostInitProperties()
 	
 	Stats = USerializationSystemLibrary::ConvertSaveDataToObjects<UStat>(StatsSaveData, this);
 
-	LOG(LogSaveLoadSystemSettings, "Stats Objects Settings Loaded")
+	LOG(Display, "Stats Objects Settings Loaded");
 }
 
 #if UE_EDITOR
@@ -28,7 +30,7 @@ void USaveLoadSystemSettings::PostEditChangeProperty(FPropertyChangedEvent& Prop
 
 		SaveSettings();
 
-		LOG(LogSaveLoadSystemSettings, "Profile Objects Settings Saved To Config")
+		LOG(Display, "Profile Objects Settings Saved To Config");
 	}
 }
 #endif

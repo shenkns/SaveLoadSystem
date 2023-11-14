@@ -1,10 +1,14 @@
-// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2022.
+// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2023.
 
 #include "Stats/Stat.h"
 
+#include "Log.h"
 #include "ManagersSystem.h"
 #include "Module/SaveLoadSystemSettings.h"
 #include "Managers/StatsManager.h"
+#include "Module/SaveLoadSystemModule.h"
+
+DEFINE_LOG_CATEGORY_LOCAL(LogSaveLoadSystem);
 
 UWorld* UStat::GetWorld() const
 {
@@ -19,7 +23,7 @@ void UStat::InitStat()
 		if(!ISerializationInterface::Execute_PostConvertFromSaveData(this)) return;
 	}
 	
-	DEBUG_MESSAGE(GetDefault<USaveLoadSystemSettings>()->bShowDebugMessages, LogSaveLoadSystemSettings, "%s Initialization", *GetName())
+	LOG(Display, "{} Initialization", this);
 
 	Init();
 }

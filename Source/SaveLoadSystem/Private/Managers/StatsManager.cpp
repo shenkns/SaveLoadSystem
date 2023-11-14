@@ -1,12 +1,15 @@
-// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2022.
+// Copyright shenkns Save-Load System Developed With Unreal Engine. All Rights Reserved 2023.
 
 #include "Managers/StatsManager.h"
 
+#include "Log.h"
 #include "ManagersSystem.h"
+#include "Log/Details/LocalLogCategory.h"
 #include "Module/SaveLoadSystemModule.h"
 #include "Module/SaveLoadSystemSettings.h"
 #include "SaveHandlers/SaveHandler.h"
-#include "LogSystem.h"
+
+DEFINE_LOG_CATEGORY_LOCAL(LogSaveLoadSystem);
 
 void UStatsManager::InitManager()
 {
@@ -52,7 +55,7 @@ void UStatsManager::InitSaveHandler()
 
 	SaveHandler = NewObject<USaveHandler>(this, SaveHandlerClass);
 
-	DEBUG_MESSAGE(GetDefault<USaveLoadSystemSettings>()->bShowDebugMessages, LogSaveLoadSystem, "Save Handler Initialized")
+	LOG(Display, "Save Handler Initialized");
 }
 
 void UStatsManager::InitStats()
@@ -62,7 +65,7 @@ void UStatsManager::InitStats()
 	LoadProfileStats();
 	CreateNewProfileStats();
 
-	DEBUG_MESSAGE(GetDefault<USaveLoadSystemSettings>()->bShowDebugMessages, LogSaveLoadSystem, "Stats Initialized")
+	LOG(Display, "Stats Initialized");
 }
 
 bool UStatsManager::SaveStats()
@@ -88,7 +91,7 @@ void UStatsManager::LoadProfileStats()
 		Stats.Add(Stat);
 	}
 
-	DEBUG_MESSAGE(GetDefault<USaveLoadSystemSettings>()->bShowDebugMessages, LogSaveLoadSystem, "Stats Loaded")
+	LOG(Display, "Stats Loaded");
 }
 
 void UStatsManager::CreateNewProfileStats()
@@ -121,5 +124,5 @@ void UStatsManager::CreateNewProfileStats()
 		Stats.Add(Stat);
 	}
 	
-	DEBUG_MESSAGE(GetDefault<USaveLoadSystemSettings>()->bShowDebugMessages, LogSaveLoadSystem, "New Stats Created")
+	LOG(Display, "New Stats Created");
 }
